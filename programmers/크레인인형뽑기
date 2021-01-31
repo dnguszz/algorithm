@@ -1,0 +1,53 @@
+import java.lang.Math;
+import java.io.*;
+import java.util.*;
+
+class Solution {
+    public int solution(int[][] board, int[] moves) {
+        
+        int answer = 0;
+        
+        List<Stack> list = new ArrayList<>();
+        for(int i=0 ; i<board[0].length ; i++){
+            //Stack stack = new Stack();
+            list.add(new Stack<Integer>());
+        }
+        for(int i=0 ; i<board[0].length ; i++){
+            for(int j=board[0].length-1 ; j>=0 ; j--){
+                if(board[j][i]!=0) list.get(i).push(board[j][i]);
+            }
+        }
+
+        /*
+        for(int i=0 ; i<board[0].length ; i++){
+            int size = list.get(i).size();
+            for(int j=size ; j>0 ; j--){
+                System.out.println(list.get(i).pop());
+            }
+            System.out.println("----------------");
+        }
+
+         */
+
+
+
+        List<Integer> tank = new ArrayList<>();
+
+
+        tank.add((int) list.get(moves[0]-1).pop());
+
+        for(int i=1 ; i<moves.length ; i++){
+            if(!list.get(moves[i]-1).isEmpty()) tank.add((int) list.get(moves[i]-1).pop());
+            if(tank.size()>=2){
+                if(tank.get(tank.size()-1) == tank.get(tank.size()-2)){
+                    tank.remove(tank.size()-1);
+                    tank.remove(tank.size()-1);
+                    answer+=2;
+                }
+            }
+        }
+
+        System.out.println(answer);
+        return answer;
+    }
+}
