@@ -1,0 +1,44 @@
+import java.util.*;
+import java.io*;
+
+public class BOJ_9012 {
+	public static boolean tf(List list) {
+		int count=0;
+		for(int i =0 ; i<list.size(); i++) {
+			if((char)list.get(i)=='(') {
+				count++;
+			}
+			else {
+				if(count ==0) return false;
+				else {
+					count--;
+				}
+			}
+		}
+		if (count==0) return true;
+		else return false;
+	}
+	public static void main(String[] args) throws IOException {
+		BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+
+		String ns = bf.readLine();
+		int n=Integer.parseInt(ns);
+		
+		String[] temp = new String[n];
+		
+		for(int i=0 ; i<n ; i++) {
+			temp[i]=bf.readLine();
+		}
+		for(int i=0 ; i<n ; i++) {
+			List list = new ArrayList();
+			for(int j=0 ; j<temp[i].length() ; j++) {
+				list.add(temp[i].charAt(j));
+			}
+			
+			if(tf(list)) System.out.println("YES");
+			else System.out.println("NO");
+			
+		}
+	}
+}
