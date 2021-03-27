@@ -14,19 +14,20 @@ public class BOJ_1976 {
         m=Integer.parseInt(bf.readLine());
         parent = new int[n];
         rank = new int[n];
-        make();
+        make(); //0~n-1까지 생성
         for(int i=0 ; i<n ; i++){
-            StringTokenizer st = new StringTokenizer(bf.readLine(), " ");
+            StringTokenizer st = new StringTokenizer(bf.readLine(), " "); //인접행렬 입력받는부분
             for(int j=0 ; j<i+1 ; j++){
-                if(st.nextToken().equals("1")){
-                    union(i,j);
+                if(st.nextToken().equals("1")){ // 입력의 인접행렬의 i과 j가 연결되어있다면
+                    union(i,j); //둘을 묶음
                 }
             }
         }
         flag=true;
-        StringTokenizer st2 = new StringTokenizer(bf.readLine(), " ");
+        StringTokenizer st2 = new StringTokenizer(bf.readLine(), " "); //여행경로 입력
         int temp = findSet(Integer.parseInt(st2.nextToken())-1);
-        for(int i=1 ; i<m ; i++){
+        for(int i=1 ; i<m ; i++){ //여행경로를 처음부터 탐색하며 모든 경로가 묶여있으면
+                                  //즉, 패런트가 모두 같으면 flag는 트루, 하나라도 다른게 나오면 false
             if(findSet(Integer.parseInt(st2.nextToken())-1)!=temp){
                 flag=false;
                 break;
