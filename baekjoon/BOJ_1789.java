@@ -13,9 +13,15 @@ public class BOJ_1789 {
 		while(true) {
 			temp+=cnt;
 			ans++;
-			if(temp>=n) break;
+			if(temp>n) {
+				System.out.println(ans-1);
+				break;
+			}
+			else if(temp==n) {
+				System.out.println(ans);
+				break;
+			}
 			cnt++;
 		}
-		System.out.println(ans-1);
 	}
 }
